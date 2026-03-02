@@ -4,25 +4,37 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.alexlitovsky</groupId>
+		<groupId>io.github.alterioncorp</groupId>
 		<artifactId>parent-pom</artifactId>
-		<version>1.0.2</version>
+		<version>1.0.0</version>
 	</parent>
 
+	<groupId>io.github.alterioncorp</groupId>
 	<artifactId>test-derby</artifactId>
 	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
+	<name>test-derby</name>
+	<description>Utility library for managing in-memory Apache Derby databases in tests.</description>
+	<url>https://github.com/alterioncorp/test-derby</url>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/alterioncorp/test-derby.git</connection>
+		<developerConnection>scm:git:ssh://github.com/alterioncorp/test-derby.git</developerConnection>
+		<url>https://github.com/alterioncorp/test-derby</url>
+	</scm>
+
 	<properties>
 		<derby.version>10.16.1.1</derby.version>
 	</properties>
-
-	<distributionManagement>
-		<repository>
-			<id>github</id>
-			<url>https://maven.pkg.github.com/alexlitovsky/test-derby</url>
-		</repository>
-	</distributionManagement>
 
 	<dependencies>
 		<dependency>
