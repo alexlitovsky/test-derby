@@ -27,33 +27,25 @@ public class DerbyEmbeddedUtils {
 	 * Creates a new in-memory Derby database with the given name.
 	 *
 	 * @param dbName the name of the database to create
-	 * @throws RuntimeException if the database cannot be created
+	 * @throws SQLException if the database cannot be created
 	 */
-	public static void createDatabase(String dbName) {
-		try {
-			DriverManager.getConnection(getJdbcUrl(dbName) + ";create=true").close();
-		}
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+	public static void createDatabase(String dbName) throws SQLException {
+		DriverManager.getConnection(getJdbcUrl(dbName) + ";create=true").close();
 	}
 
 	/**
 	 * Drops an existing in-memory Derby database with the given name.
 	 *
 	 * @param dbName the name of the database to destroy
-	 * @throws RuntimeException if an unexpected SQL error occurs
+	 * @throws SQLException if an unexpected SQL error occurs
 	 */
-	public static void dropDatabase(String dbName) {
+	public static void dropDatabase(String dbName) throws SQLException {
 		try {
             DriverManager.getConnection(getJdbcUrl(dbName) + ";drop=true").close();
         }
 		catch (SQLNonTransientConnectionException e) {
 			// this is expected
         }
-		catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	/**
@@ -61,14 +53,10 @@ public class DerbyEmbeddedUtils {
 	 *
 	 * @param dbName the name of the database to connect to
 	 * @return an open {@link Connection} to the specified database
-	 * @throws RuntimeException if the connection cannot be established
+	 * @throws SQLException if the connection cannot be established
 	 */
-	public static Connection openConnection(String dbName) {
-		try {
-			return DriverManager.getConnection(getJdbcUrl(dbName));
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+	public static Connection openConnection(String dbName) throws SQLException {
+		return DriverManager.getConnection(getJdbcUrl(dbName));
 	}
 
 	private static String getJdbcUrl(String dbName) {
