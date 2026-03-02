@@ -11,7 +11,7 @@ Add the dependency to your project. Because Derby is declared `provided` in this
 **Maven:**
 ```xml
 <dependency>
-    <groupId>io.github.alexlitovsky</groupId>
+    <groupId>io.github.alterioncorp</groupId>
     <artifactId>test-derby</artifactId>
     <version>1.0.0</version>
     <scope>test</scope>
@@ -32,7 +32,7 @@ Add the dependency to your project. Because Derby is declared `provided` in this
 
 ## API
 
-All methods are static on `io.github.alexlitovsky.test.derby.DerbyEmbeddedUtils` and declare `throws SQLException`.
+All methods are static on `io.github.alterioncorp.test.derby.DerbyEmbeddedUtils` and declare `throws SQLException`.
 
 | Method | Description |
 |---|---|
