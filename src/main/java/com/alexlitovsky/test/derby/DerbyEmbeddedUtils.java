@@ -17,17 +17,11 @@ import org.apache.derby.jdbc.EmbeddedDriver;
  * embedded Derby databases backed by memory (no disk persistence). Suitable for
  * use in unit and integration tests that require an isolated, throwaway database.
  */
-public class DerbyUtils {
+public class DerbyEmbeddedUtils {
 
 	static {
 		EmbeddedDriver.class.getName();
 	}
-
-	/**
-	 * JDBC URL template for an in-memory Derby database.
-	 * Use {@link String#format(String, Object...)} with a database name to produce a full URL.
-	 */
-	public static final String JDBC_URL_FORMAT = "jdbc:derby:memory:%s";
 
 	/**
 	 * Creates a new in-memory Derby database with the given name.
@@ -35,7 +29,7 @@ public class DerbyUtils {
 	 * @param dbName the name of the database to create
 	 * @throws RuntimeException if the database cannot be created
 	 */
-	public static void createTestDb(String dbName) {
+	public static void createDatabase(String dbName) {
 		try {
 			DriverManager.getConnection(getJdbcUrl(dbName) + ";create=true").close();
 		}
@@ -47,18 +41,15 @@ public class DerbyUtils {
 	/**
 	 * Drops an existing in-memory Derby database with the given name.
 	 *
-	 * <p>Derby signals a successful drop by throwing {@link SQLNonTransientConnectionException},
-	 * which this method silently swallows. Any other {@link SQLException} is rethrown.
-	 *
 	 * @param dbName the name of the database to destroy
 	 * @throws RuntimeException if an unexpected SQL error occurs
 	 */
-	public static void destroyTestDb(String dbName) {
+	public static void dropDatabase(String dbName) {
 		try {
             DriverManager.getConnection(getJdbcUrl(dbName) + ";drop=true").close();
         }
 		catch (SQLNonTransientConnectionException e) {
-			// somehow this is expected
+			// this is expected
         }
 		catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -80,14 +71,8 @@ public class DerbyUtils {
 		}
 	}
 
-	/**
-	 * Returns the JDBC URL for an in-memory Derby database.
-	 *
-	 * @param dbName the name of the database
-	 * @return the JDBC URL string, e.g. {@code jdbc:derby:memory:mydb}
-	 */
-	public static String getJdbcUrl(String dbName) {
-		return String.format(JDBC_URL_FORMAT, dbName);
+	private static String getJdbcUrl(String dbName) {
+		return String.format("jdbc:derby:memory:%s", dbName);
 	}
 
 	/**
