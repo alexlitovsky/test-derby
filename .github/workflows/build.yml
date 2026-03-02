@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    uses: alexlitovsky-dev/.github/.github/workflows/reusable-build.yml@main
+    uses: alterioncorp/.github/.github/workflows/reusable-build.yml@main
     with:
       mvn-goal: clean verify -U
     secrets: inherit
