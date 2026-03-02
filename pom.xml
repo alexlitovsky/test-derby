@@ -9,7 +9,6 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<groupId>io.github.alterioncorp</groupId>
 	<artifactId>test-derby</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
