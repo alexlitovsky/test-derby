@@ -31,6 +31,13 @@
 		<url>https://github.com/alterioncorp/test-derby</url>
 	</scm>
 
+	<distributionManagement>
+		<snapshotRepository>
+			<id>github</id>
+			<url>https://maven.pkg.github.com/alterioncorp/test-derby</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<properties>
 		<derby.version>10.16.1.1</derby.version>
 	</properties>
